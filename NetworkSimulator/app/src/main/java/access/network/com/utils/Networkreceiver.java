@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -17,6 +18,8 @@ public class Networkreceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        Log.d("on action ", intent.getAction());
+
         if (intent.getAction().equals(AppConstants.ACTION_CONNECTIVITY_CHANGE)) {
 
             //Observed a change in metwork connectivity
@@ -26,22 +29,8 @@ public class Networkreceiver extends BroadcastReceiver {
             NetworkInfo info = manager.getActiveNetworkInfo();
             if (info != null) {
 
-                switch (info.getState()) {
-                    case CONNECTED:
+                processInfo(info);
 
-                        EventBus.getDefault().post(new MessageEvent(AppConstants.NETWORK_CONNECTED));
-
-                        break;
-                    case CONNECTING:
-                        break;
-                    case DISCONNECTED:
-
-                        EventBus.getDefault().post(new MessageEvent(AppConstants.NETWORK_DISCONNECTED));
-
-                        break;
-                    case DISCONNECTING:
-                        break;
-                }
             } else {
 
                 //no network found
@@ -50,5 +39,20 @@ public class Networkreceiver extends BroadcastReceiver {
             }
         }
 
+    }
+
+    private void processInfo(NetworkInfo info) {
+        switch (info.getState()) {
+            case CONNECTED:
+                EventBus.getDefault().post(new MessageEvent(AppConstants.NETWORK_CONNECTED));
+                break;
+            case CONNECTING:
+                break;
+            case DISCONNECTED:
+                EventBus.getDefault().post(new MessageEvent(AppConstants.NETWORK_DISCONNECTED));
+                break;
+            case DISCONNECTING:
+                break;
+        }
     }
 }

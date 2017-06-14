@@ -11,4 +11,6 @@ public interface AppConstants {
     String NETWORK_CONNECTED = "connected";
 
     String NETWORK_DISCONNECTED = "disconnected";
+
+    String WIFI_STATE_CHANGE_ACTION = "android.net.wifi.WIFI_STATE_CHANGED";
 }
