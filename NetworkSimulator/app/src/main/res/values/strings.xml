@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NetworkSimulator</string>
+    <string name="available">Hi! you are online.</string>
+    <string name="offline">Sorry! you are disconnected.</string>
+</resources>
