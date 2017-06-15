@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
             case AppConstants.NETWORK_DISCONNECTED:
                 showToast(getString(R.string.offline));
                 break;
+            case AppConstants.NETWORK_CONNECTION_WEEK:
+                showToast(getString(R.string.week_conn));
+                break;
         }
 
 

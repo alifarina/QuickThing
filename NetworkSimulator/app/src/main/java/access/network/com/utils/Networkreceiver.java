@@ -9,8 +9,10 @@ import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 
+import access.network.com.application.NetApplicationClass;
+
 /**
- * Created by infoobjects on 14-06-2017.
+ * Created by Farina Ali
  */
 
 public class Networkreceiver extends BroadcastReceiver {
@@ -27,14 +29,20 @@ public class Networkreceiver extends BroadcastReceiver {
             ConnectivityManager manager = (ConnectivityManager)
                     context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo info = manager.getActiveNetworkInfo();
+            NetApplicationClass applicationClass = (NetApplicationClass) context.getApplicationContext();
             if (info != null) {
 
-                processInfo(info);
+                // processInfo(info);
+
+                EventBus.getDefault().post(new MessageEvent(AppConstants.NETWORK_CONNECTED));
+                applicationClass.startConnectionTask();
 
             } else {
 
                 //no network found
                 EventBus.getDefault().post(new MessageEvent(AppConstants.NETWORK_DISCONNECTED));
+
+                applicationClass.stopConnectionTask();
 
             }
         }

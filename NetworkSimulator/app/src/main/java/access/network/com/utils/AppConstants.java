@@ -1,7 +1,7 @@
 package access.network.com.utils;
 
 /**
- * Created by infoobjects on 14-06-2017.
+ * Created by Farina Ali
  */
 
 public interface AppConstants {
@@ -13,4 +13,8 @@ public interface AppConstants {
     String NETWORK_DISCONNECTED = "disconnected";
 
     String WIFI_STATE_CHANGE_ACTION = "android.net.wifi.WIFI_STATE_CHANGED";
+
+    String APP_SHARED_PREFERENCE = "app_pref";
+
+    String NETWORK_CONNECTION_WEEK = "week_internet";
 }
